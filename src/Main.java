@@ -41,10 +41,10 @@ public class Main {
         switch(choice){
             case 1:
                 System.out.println("Enter Trader Name:");
-                // addTrader();
+                 addTrader();
                 break;
             case 2:
-                //desplayAllTraders();
+                displayTraders();
                 break;
             case 3:
                 //changeThepriceofasset();
@@ -110,8 +110,13 @@ public class Main {
         int id = sc.nextInt();
         System.out.println("Enter initial balance");
         double balance = sc.nextDouble();
+       Trader trader = new Trader(name,id,balance);
+        Market.addTrader(trader);
 
 
+    }
+    public static void displayTraders(){
+        Market.getTraders();
     }
 
     public static void main(String[] args) {
