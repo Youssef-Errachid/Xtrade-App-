@@ -1,3 +1,4 @@
+import javax.imageio.plugins.tiff.ExifTIFFTagSet;
 import java.util.Scanner;
 
 public class Main {
@@ -39,6 +40,7 @@ public class Main {
     public static void AdminController(int choice){
         switch(choice){
             case 1:
+                System.out.println("Enter Trader Name:");
                 // addTrader();
                 break;
             case 2:
@@ -56,8 +58,9 @@ public class Main {
             case 6:
                 //remouveAsset();
                 break;
-            case 7:
-                //Exit
+            case 0:
+                System.out.println("Exit the program");
+                System.exit(0);
                 break;
                 default:
                     System.out.println("Invalid choice");
@@ -86,8 +89,9 @@ public class Main {
             case 3:
                 //sellanAsset();
                 break;
-            case 4:
-                //Exit
+            case 0:
+                System.out.println("Exit the program");
+                System.exit(0);
                 break;
                 default:
                     System.out.println("Invalid choice");
@@ -99,11 +103,27 @@ public class Main {
         return choice;
     }
 
+    public static void addTrader(){
+        System.out.println("Enter Trader Name:");
+        String name = sc.next();
+        System.out.println("Enter Treder ID ");
+        int id = sc.nextInt();
+        System.out.println("Enter initial balance");
+        double balance = sc.nextDouble();
+
+
+    }
 
     public static void main(String[] args) {
-        menuPrincipal();
-        int choice = getchoice("Enter your choice 1 or 2 ");
-        controller(choice);
+        char tryagain = 'y';
+        do{
+            menuPrincipal();
+            int choice = getchoice("Enter your choice 1 or 2 ");
+            controller(choice);
+            System.out.println("do you want to continue? y/n");
+            tryagain = sc.next().charAt(0);
+
+        }while(tryagain == 'y' || tryagain == 'Y');
 
     }
 }
