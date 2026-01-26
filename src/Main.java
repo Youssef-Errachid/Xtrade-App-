@@ -10,7 +10,7 @@ public class Main {
         System.out.println("2. Trader section");
         System.out.println("=============================");
     }
-    public static void controler(int choice){
+    public static void controller(int choice){
         switch(choice){
             case 1:
                 menuofAdmin();
@@ -26,18 +26,72 @@ public class Main {
         System.out.println("============================");
         System.out.println("      Administrator");
         System.out.println("============================");
-
-        System.out.println("1. Admin section");
-        System.out.println("2. Trader section");
-
+        System.out.println("1. Add Trader");
+        System.out.println("2. Desplay all Traders");
+        System.out.println("3. Change the price of Asset");
+        System.out.println("4. Add Asset");
+        System.out.println("5. Remove Trader");
+        System.out.println("6. Remove Asset");
+        System.out.println("7. Exit");
+        int choice = getchoice("Enter your choice between 1 and 7");
+        AdminController(choice);
+    }
+    public static void AdminController(int choice){
+        switch(choice){
+            case 1:
+                // addTrader();
+                break;
+            case 2:
+                //desplayAllTraders();
+                break;
+            case 3:
+                //changeThepriceofasset();
+                break;
+            case 4:
+                //addAsset();
+                break;
+            case 5:
+                //remouveTreader();
+                break;
+            case 6:
+                //remouveAsset();
+                break;
+            case 7:
+                //Exit
+                break;
+                default:
+                    System.out.println("Invalid choice");
+        }
     }
     public static void menuofTrader(){
         System.out.println("============================");
         System.out.println("          Trader");
         System.out.println("============================");
+        System.out.println("1. Desplay Portfolio ");
+        System.out.println("2. buy an asset");
+        System.out.println("3. sell an asset");
+        System.out.println("4. Exit");
+        int choice = getchoice("Enter your choice between 1 and 4");
+        TraderController(choice);
 
-        System.out.println("1. Admin section");
-        System.out.println("2. Trader section");
+    }
+    public static void TraderController(int choice){
+        switch(choice){
+            case 1:
+                //desplayPortfolio(();
+                break;
+            case 2:
+                //buyanAsset();
+                break;
+            case 3:
+                //sellanAsset();
+                break;
+            case 4:
+                //Exit
+                break;
+                default:
+                    System.out.println("Invalid choice");
+        }
     }
     public static int getchoice(String message){
         System.out.println(message);
@@ -45,10 +99,11 @@ public class Main {
         return choice;
     }
 
+
     public static void main(String[] args) {
         menuPrincipal();
-        int choice = getchoice("Enter your choice?");
-        controler(choice);
+        int choice = getchoice("Enter your choice 1 or 2 ");
+        controller(choice);
 
     }
 }
