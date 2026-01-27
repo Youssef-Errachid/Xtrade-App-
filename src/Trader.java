@@ -7,6 +7,15 @@ public class Trader {
      this.ID = ID;
      this.balance = 0;
  }
+ public int  getID(){
+     return ID;
+ }
+ public double getBalance(){
+     return balance;
+ }
+ public String getName(){
+     return name;
+ }
  @Override
     public String toString(){
      return "Trader{" + "name=" + name + ", ID=" + ID + ", balance=" + balance + '}';

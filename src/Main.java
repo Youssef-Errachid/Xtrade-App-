@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
+
     public static void menuPrincipal(){
         System.out.println("=============================");
         System.out.println("   Welcome to Xtrade app ");
@@ -53,7 +54,7 @@ public class Main {
                 //addAsset();
                 break;
             case 5:
-                //remouveTreader();
+                removeTreader();
                 break;
             case 6:
                 //remouveAsset();
@@ -66,6 +67,7 @@ public class Main {
                     System.out.println("Invalid choice");
         }
     }
+
     public static void menuofTrader(){
         System.out.println("============================");
         System.out.println("          Trader");
@@ -104,6 +106,9 @@ public class Main {
     }
 
     public static void addTrader(){
+        System.out.println("=============================");
+        System.out.println("        Add Trader ");
+        System.out.println("=============================");
         System.out.println("Enter Trader Name:");
         String name = sc.next();
         System.out.println("Enter Treder ID ");
@@ -112,8 +117,14 @@ public class Main {
         double balance = sc.nextDouble();
        Trader trader = new Trader(name,id,balance);
         Market.addTrader(trader);
-
-
+    }
+    private static void removeTreader() {
+        System.out.println("=============================");
+        System.out.println("       Remove Trader ");
+        System.out.println("=============================");
+        System.out.println("Enter Trader ID to remove");
+        int id = sc.nextInt();
+        Market.removeTrader(id);
     }
     public static void displayTraders(){
         Market.getTraders();
