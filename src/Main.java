@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Main {
     static Scanner sc = new Scanner(System.in);
 
-
     public static void menuPrincipal(){
         System.out.println("=============================");
         System.out.println("   Welcome to Xtrade app ");
@@ -52,10 +51,10 @@ public class Main {
                 desplaystockofMarket();
                 break;
             case 4:
-               //desplaycryptoofMarket()
+               desplaycryptoofMarket();
                 break;
             case 5:
-                //changethepriceofAsset();
+                changethepriceofAsset();
                 break;
             case 6:
                addAsset();
@@ -164,7 +163,6 @@ public class Main {
         String name = sc.next();
         Market.removeCrypto(name);
     }
-
     public static void displayTraders(){
         System.out.println("=============================");
         System.out.println("       Traders info ");
@@ -182,10 +180,9 @@ public class Main {
             AddStock();
         }
         else{
-            //AddCrypto();
+            addCrypto();
         }
     }
-
     public static void AddStock(){
         System.out.println("=============================");
         System.out.println("         Add Stock ");
@@ -203,16 +200,59 @@ public class Main {
         Stock stock = new Stock(name,id,p,"stock",q);
         Market.addStock(stock,name);
     }
+    public static void addCrypto(){
+        System.out.println("=============================");
+        System.out.println("         Add Crypto currency ");
+        System.out.println("=============================");
+        System.out.println("Enter Crypto ID:");
+        sc.nextLine();
+        String id = sc.nextLine();
+        System.out.println("Enter Crypto Name:");
+        String name = sc.next();
+        System.out.println("Enter Crypto Price:");
+        double p = sc.nextDouble();
+        System.out.println("Enter Crypto Quantity:");
+        sc.nextLine();
+        int q = sc.nextInt();
+        CryptoCurrency Crypto = new CryptoCurrency(name,id,p,"Crypto",q);
+        Market.addCrypto(Crypto,name);
+    }
     public static void desplaystockofMarket(){
         System.out.println("=============================");
         System.out.println("         Market Stock ");
         System.out.println("=============================");
         Market.desplaystok();
     }
-    public static void desplaycryptoofMarket(){}
-    public static void changethepriceofAsset(){}
-
+    public static void desplaycryptoofMarket(){
+        System.out.println("=============================");
+        System.out.println("         Market Crypto Currency ");
+        System.out.println("=============================");
+        Market.desplayCryptoCrruncy();
+    }
+    public static void changethepriceofAsset(){
+        System.out.println("=============================");
+        System.out.println("        Change the Price of Asset ");
+        System.out.println("=============================");
+        System.out.println("1. change the stock price ");
+        System.out.println("2. change the crypto price ");
+        int choice =  getchoice("Enter your choice between 1 and 2");
+        if(choice == 1) {
+            changethepriceofStock();
+        }
+        else if(choice == 2){
+            changethepiceofCrypto();
+        }
+        else{
+            System.out.println("Invalid choice");
+        }
+    }
+    private static void changethepiceofCrypto() {
+    }
+    private static void changethepriceofStock() {
+    }
     public static void main(String[] args) {
+
+        //market stock
         Market.stocks.add(new Stock("Apple", "AAPL", 175.50, "Stock" ,100));
         Market.stocks.add(new Stock("Microsoft", "MSFT", 310.20, "Stock",100));
         Market.stocks.add(new Stock("Amazon", "AMZN", 145.75, "Stock",100));
@@ -223,6 +263,23 @@ public class Main {
         Market.stocks.add(new Stock("Walmart", "WMT", 155.40, "Stock",100));
         Market.stocks.add(new Stock("McDonald", "MCD", 280.75, "Stock",100));
         Market.stocks.add(new Stock("Coca", "KO", 60.10, "Stock",100));
+
+        // market crypto
+        Market.cryptos.add(new CryptoCurrency("Apple", "AAPL", 175.50, "Crypto" ,100));
+        Market.cryptos.add(new CryptoCurrency("Microsoft", "MSFT", 310.20, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Amazon", "AMZN", 145.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Alphabet", "GOOGL", 2800.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Meta", "META", 350.40, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Tesla", "TSLA", 720.10, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("NVIDIA", "NVDA", 650.25, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Walmart", "WMT", 155.40, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("McDonald", "MCD", 280.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Coca", "KO", 60.10, "Crypto",100));
+
+
+
+
+
 
         char tryagain = 'y';
         do{

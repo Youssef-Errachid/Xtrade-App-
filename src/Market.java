@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class Market
 {
     private static List<Trader> traders = new ArrayList<>();
-    private static List<CryptoCurrency> cryptos = new ArrayList<>();
+     static List<CryptoCurrency> cryptos = new ArrayList<>();
      static List<Stock> stocks = new ArrayList<>();
      static Scanner sc = new Scanner(System.in);
-
 
     public static void addTrader(Trader trader){
         if(traders.contains(trader)){
@@ -75,8 +74,6 @@ public class Market
            System.out.println("Stock added successfully");
         }
     }
-
-
     public static void desplaystok() {
         int counter = 1 ;
         for(Stock s : stocks){
@@ -87,7 +84,6 @@ public class Market
             System.out.println("stock type : " + s.getAssettype());
         }
     }
-
     public static void removeStock(String name) {
         Stock stock = findStock(name);
         if(stock != null){
@@ -95,8 +91,11 @@ public class Market
             System.out.println("Stock removed successfully");
         }
     }
-
     public static void removeCrypto(String name) {
 
+    }
+    public static void addCrypto(CryptoCurrency crypto, String name) {
+    }
+    public static void desplayCryptoCrruncy() {
     }
 }
