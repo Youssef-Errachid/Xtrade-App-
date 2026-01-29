@@ -36,14 +36,13 @@ public class Main {
         System.out.println("6. Add Asset");
         System.out.println("7. Remove Trader");
         System.out.println("8. Remove Asset");
-        System.out.println("9. Exit");
+        System.out.println("0. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
     }
     public static void AdminController(int choice){
         switch(choice){
             case 1:
-                System.out.println("Enter Trader Name:");
                  addTrader();
                 break;
             case 2:
@@ -53,13 +52,19 @@ public class Main {
                 desplaystockofMarket();
                 break;
             case 4:
-                addAsset();
+               //desplaycryptoofMarket()
                 break;
             case 5:
-                removeTreader();
+                //changethepriceofAsset();
                 break;
             case 6:
-                //remouveAsset();
+               addAsset();
+                break;
+            case 7:
+                removeTreader();
+                break;
+            case 8:
+                removeAsset();
                 break;
             case 0:
                 System.out.println("Exit the program");
@@ -126,6 +131,40 @@ public class Main {
         int id = sc.nextInt();
         Market.removeTrader(id);
     }
+    private static void removeAsset() {
+        System.out.println("=============================");
+        System.out.println("       Remove Asset ");
+        System.out.println("=============================");
+        System.out.println("1. Remove Stock");
+        System.out.println("2. Remove Crypto Currency");
+        int choice = getchoice("Enter your choice between 1 and 2");
+        if(choice == 1){
+            remouveStockofMarket();
+        }
+        else if(choice == 2){
+            remouveCryptoofMarket();
+        }
+        else{
+            System.out.println("Invalid choice");
+        }
+    }
+    public static void remouveStockofMarket(){
+        System.out.println("=============================");
+        System.out.println("        Remove Stock ");
+        System.out.println("=============================");
+        System.out.println("Enter the Stock name to remove");
+        String name = sc.next();
+        Market.removeStock(name);
+    }
+    public static void remouveCryptoofMarket(){
+        System.out.println("=============================");
+        System.out.println("        Remove Crypto ");
+        System.out.println("=============================");
+        System.out.println("Enter the Crypto name to remove");
+        String name = sc.next();
+        Market.removeCrypto(name);
+    }
+
     public static void displayTraders(){
         System.out.println("=============================");
         System.out.println("       Traders info ");
@@ -170,6 +209,8 @@ public class Main {
         System.out.println("=============================");
         Market.desplaystok();
     }
+    public static void desplaycryptoofMarket(){}
+    public static void changethepriceofAsset(){}
 
     public static void main(String[] args) {
         Market.stocks.add(new Stock("Apple", "AAPL", 175.50, "Stock" ,100));

@@ -56,6 +56,9 @@ public class Market
         }
         return null;
     }
+    public static void findCrypto(String name){
+
+    }
     public static void addStock(Stock stock ,String name){
         Stock existingStock = findStock(name);
 
@@ -83,5 +86,17 @@ public class Market
             System.out.println("stock price : "+ s.getprice());
             System.out.println("stock type : " + s.getAssettype());
         }
+    }
+
+    public static void removeStock(String name) {
+        Stock stock = findStock(name);
+        if(stock != null){
+            stocks.remove(stock);
+            System.out.println("Stock removed successfully");
+        }
+    }
+
+    public static void removeCrypto(String name) {
+
     }
 }
