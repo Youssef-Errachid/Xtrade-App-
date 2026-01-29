@@ -10,5 +10,4 @@ public class Portfolio {
         stocks.add(stock);
     }
 
-
 }

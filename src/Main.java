@@ -30,11 +30,13 @@ public class Main {
         System.out.println("============================");
         System.out.println("1. Add Trader");
         System.out.println("2. Desplay all Traders");
-        System.out.println("3. Change the price of Asset");
-        System.out.println("4. Add Asset");
-        System.out.println("5. Remove Trader");
-        System.out.println("6. Remove Asset");
-        System.out.println("7. Exit");
+        System.out.println("3. Desplay Market Stock");
+        System.out.println("4. Desplay Market Crypto Currency");
+        System.out.println("5. Change the price of Asset");
+        System.out.println("6. Add Asset");
+        System.out.println("7. Remove Trader");
+        System.out.println("8. Remove Asset");
+        System.out.println("9. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
     }
@@ -48,7 +50,7 @@ public class Main {
                 displayTraders();
                 break;
             case 3:
-                //changeThepriceofasset();
+                desplaystockofMarket();
                 break;
             case 4:
                 addAsset();
@@ -149,14 +151,23 @@ public class Main {
         System.out.println("=============================");
         System.out.println("         Add Stock ");
         System.out.println("=============================");
-        desplaystock();
-        System.out.println("Enter the name of the stock you want to add to the market:");
+        System.out.println("Enter Stock ID:");
         sc.nextLine();
-        String stockname = sc.nextLine();
-        Market.addStock(stockname);
+        String id = sc.nextLine();
+        System.out.println("Enter Stock Name:");
+        String name = sc.next();
+        System.out.println("Enter Stock Price:");
+        double p = sc.nextDouble();
+        System.out.println("Enter Stock Quantity:");
+        sc.nextLine();
+        int q = sc.nextInt();
+        Stock stock = new Stock(name,id,p,"stock",q);
+        Market.addStock(stock,name);
     }
-    public static void desplaystock(){
-
+    public static void desplaystockofMarket(){
+        System.out.println("=============================");
+        System.out.println("         Market Stock ");
+        System.out.println("=============================");
         Market.desplaystok();
     }
 

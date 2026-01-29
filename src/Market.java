@@ -56,21 +56,23 @@ public class Market
         }
         return null;
     }
-    public static void addStock(String stockName){
-        Stock stock = findStock(stockName);
+    public static void addStock(Stock stock ,String name){
+        Stock existingStock = findStock(name);
 
-        if(stock != null){
-            System.out.println("Enter the quantity of the stock you want to add");
-            int quality = sc.nextInt();
-            sc.nextLine();
-            stock.setQuantity(quality);
-            Portfolio.addStock(stock);
+        if(existingStock != null){
+            System.out.println("Stock already exists, add the quantity only");
+            int quantity = stock.getquantity();
+            int newquantity = existingStock.getquantity() + quantity;
+            stock.setQuantity(newquantity);
+            stocks.add(stock);
             System.out.println("Stock added successfully");
         }
         else{
-            System.out.println("invalid stock name or quantity");
+           stocks.add(stock);
+           System.out.println("Stock added successfully");
         }
     }
+
 
     public static void desplaystok() {
         int counter = 1 ;
