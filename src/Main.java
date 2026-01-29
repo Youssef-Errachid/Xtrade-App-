@@ -51,7 +51,7 @@ public class Main {
                 //changeThepriceofasset();
                 break;
             case 4:
-                //addAsset();
+                addAsset();
                 break;
             case 5:
                 removeTreader();
@@ -67,7 +67,6 @@ public class Main {
                     System.out.println("Invalid choice");
         }
     }
-
     public static void menuofTrader(){
         System.out.println("============================");
         System.out.println("          Trader");
@@ -104,7 +103,6 @@ public class Main {
         int choice = sc.nextInt();
         return choice;
     }
-
     public static void addTrader(){
         System.out.println("=============================");
         System.out.println("        Add Trader ");
@@ -140,9 +138,22 @@ public class Main {
         System.out.println("2. add crypto currency");
         int choice =  getchoice("Enter your choice between 1 and 2");
         if(choice == 1) {
-
-
+            AddStock();
         }
+        else{
+            //AddCrypto();
+        }
+    }
+
+    public static void AddStock(){
+        System.out.println("=============================");
+        System.out.println("         Add Stock ");
+        System.out.println("=============================");
+        desplaystock();
+        System.out.println("Enter the name of the stock you want to add to the market:");
+        sc.nextLine();
+        String stockname = sc.nextLine();
+        Market.addStock(stockname);
     }
     public static void desplaystock(){
 
@@ -150,40 +161,20 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Market.stocks.add(new Stock("Apple Inc.", "AAPL", 175.50, "Stock"));
-        Market.stocks.add(new Stock("Microsoft Corp.", "MSFT", 310.20, "Stock"));
-        Market.stocks.add(new Stock("Amazon.com Inc.", "AMZN", 145.75, "Stock"));
-        Market.stocks.add(new Stock("Alphabet Inc. (Google)", "GOOGL", 2800.75, "Stock"));
-        Market.stocks.add(new Stock("Meta Platforms Inc.", "META", 350.40, "Stock"));
-        Market.stocks.add(new Stock("Tesla Inc.", "TSLA", 720.10, "Stock"));
-        Market.stocks.add(new Stock("NVIDIA Corp.", "NVDA", 650.25, "Stock"));
-        Market.stocks.add(new Stock("Walmart Inc.", "WMT", 155.40, "Stock"));
-        Market.stocks.add(new Stock("McDonald's Corp.", "MCD", 280.75, "Stock"));
-        Market.stocks.add(new Stock("Coca-Cola Co.", "KO", 60.10, "Stock"));
-        Market.stocks.add(new Stock("PepsiCo Inc.", "PEP", 175.80, "Stock"));
-        Market.stocks.add(new Stock("Netflix Inc.", "NFLX", 590.80, "Stock"));
-        Market.stocks.add(new Stock("Adobe Inc.", "ADBE", 520.30, "Stock"));
-        Market.stocks.add(new Stock("Intel Corp.", "INTC", 45.60, "Stock"));
-        Market.stocks.add(new Stock("Cisco Systems Inc.", "CSCO", 55.20, "Stock"));
-        Market.stocks.add(new Stock("Oracle Corp.", "ORCL", 115.40, "Stock"));
-        Market.stocks.add(new Stock("IBM Corp.", "IBM", 140.75, "Stock"));
-        Market.stocks.add(new Stock("Qualcomm Inc.", "QCOM", 130.25, "Stock"));
-        Market.stocks.add(new Stock("PayPal Holdings Inc.", "PYPL", 72.90, "Stock"));
-        Market.stocks.add(new Stock("Salesforce Inc.", "CRM", 240.10, "Stock"));
-        Market.stocks.add(new Stock("Shopify Inc.", "SHOP", 65.80, "Stock"));
-        Market.stocks.add(new Stock("Uber Technologies Inc.", "UBER", 58.40, "Stock"));
-        Market.stocks.add(new Stock("Lyft Inc.", "LYFT", 12.75, "Stock"));
-        Market.stocks.add(new Stock("Zoom Video Communications", "ZM", 70.50, "Stock"));
-        Market.stocks.add(new Stock("Spotify Technology", "SPOT", 180.25, "Stock"));
-        Market.stocks.add(new Stock("Snap Inc.", "SNAP", 15.30, "Stock"));
-        Market.stocks.add(new Stock("Twitter (X)", "TWTR", 45.00, "Stock"));
-        Market.stocks.add(new Stock("Berkshire Hathaway Inc.", "BRK.A", 540000.00, "Stock"));
-        Market.stocks.add(new Stock("Johnson & Johnson", "JNJ", 165.20, "Stock"));
-        Market.stocks.add(new Stock("Pfizer Inc.", "PFE", 38.40, "Stock"));
+        Market.stocks.add(new Stock("Apple", "AAPL", 175.50, "Stock" ,100));
+        Market.stocks.add(new Stock("Microsoft", "MSFT", 310.20, "Stock",100));
+        Market.stocks.add(new Stock("Amazon", "AMZN", 145.75, "Stock",100));
+        Market.stocks.add(new Stock("Alphabet", "GOOGL", 2800.75, "Stock",100));
+        Market.stocks.add(new Stock("Meta", "META", 350.40, "Stock",100));
+        Market.stocks.add(new Stock("Tesla", "TSLA", 720.10, "Stock",100));
+        Market.stocks.add(new Stock("NVIDIA", "NVDA", 650.25, "Stock",100));
+        Market.stocks.add(new Stock("Walmart", "WMT", 155.40, "Stock",100));
+        Market.stocks.add(new Stock("McDonald", "MCD", 280.75, "Stock",100));
+        Market.stocks.add(new Stock("Coca", "KO", 60.10, "Stock",100));
+
         char tryagain = 'y';
         do{
             menuPrincipal();
-            desplaystock();
             int choice = getchoice("Enter your choice 1 or 2 ");
             controller(choice);
             System.out.println("do you want to continue? y/n");

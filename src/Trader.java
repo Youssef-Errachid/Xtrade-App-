@@ -1,24 +1,20 @@
-public class Trader {
-    private String name;
-    private int ID;
+public class Trader extends Person {
     private double balance;
- public  Trader(String name, int ID,  double balance){
-     this.name = name;
-     this.ID = ID;
+ public  Trader(String name, int id, double balance){
+  super(name,id);
      this.balance = 0;
  }
- public int  getID(){
-     return ID;
- }
- public double getBalance(){
-     return balance;
- }
- public String getName(){
-     return name;
- }
+
  @Override
     public String toString(){
-     return "Trader{" + "name=" + name + ", ID=" + ID + ", balance=" + balance + '}';
+     return "Trader{" + "name=" + this.getName() + ", ID=" + this.getId() + ", balance=" + balance + '}';
  }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
 }

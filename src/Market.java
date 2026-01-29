@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Market
 {
     private static List<Trader> traders = new ArrayList<>();
     private static List<CryptoCurrency> cryptos = new ArrayList<>();
      static List<Stock> stocks = new ArrayList<>();
+     static Scanner sc = new Scanner(System.in);
 
 
     public static void addTrader(Trader trader){
@@ -34,17 +36,40 @@ public class Market
        for(Trader trader:traders){
            System.out.println("Trader " + counter++ );
            System.out.println("Trader name : " + trader.getName());
-           System.out.println("Trader ID : " + trader.getID());
+           System.out.println("Trader ID : " + trader.getId());
            System.out.println("Trader balance : " + trader.getBalance());
        }
     }
     public static Trader findTrader(int id){
     for (Trader trader:traders) {
-        if(trader.getID() == id){
+        if(trader.getId() == id){
             return trader;
         }
     }
     return null;
+    }
+    public static Stock findStock(String name){
+        for (Stock stock:stocks) {
+            if(stock.getname().equals(name)){
+                return stock;
+            }
+        }
+        return null;
+    }
+    public static void addStock(String stockName){
+        Stock stock = findStock(stockName);
+
+        if(stock != null){
+            System.out.println("Enter the quantity of the stock you want to add");
+            int quality = sc.nextInt();
+            sc.nextLine();
+            stock.setQuantity(quality);
+            Portfolio.addStock(stock);
+            System.out.println("Stock added successfully");
+        }
+        else{
+            System.out.println("invalid stock name or quantity");
+        }
     }
 
     public static void desplaystok() {

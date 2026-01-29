@@ -1,13 +1,15 @@
-public class Asset {
+public abstract class Asset {
     private String name;
     private String id;
     private double price;
     private String assetType;
-    public Asset(String name, String id, double price, String assetType) {
+    private int quantity;
+    public Asset(String name, String id, double price, String assetType, int quantity) {
         this.name = name;
         this.id = id;
         this.price = price;
         this.assetType = assetType;
+        this.quantity = quantity;
     }
     public String getName() {
         return name;
@@ -29,6 +31,14 @@ public class Asset {
     }
     public String getAssetType() {
         return assetType;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setAssetType(String assetType) {

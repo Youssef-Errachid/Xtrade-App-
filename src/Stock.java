@@ -1,6 +1,6 @@
 public class Stock extends Asset{
-    Stock(String name, String id, double price, String AssetType) {
-        super(name,id,price,AssetType);
+    Stock(String name, String id, double price, String AssetType, int quantity) {
+        super(name,id,price,AssetType,quantity);
 
     }
     public String getname(){
@@ -15,5 +15,10 @@ public class Stock extends Asset{
     public String getAssettype(){
         return this.getAssetType();
     }
+    public int getquantity(){
+        return this.getQuantity();
+    }
+
+
 
 }
