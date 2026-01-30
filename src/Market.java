@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Market
 {
-    private static List<Trader> traders = new ArrayList<>();
+     static List<Trader> traders = new ArrayList<>();
      static List<CryptoCurrency> cryptos = new ArrayList<>();
      static List<Stock> stocks = new ArrayList<>();
      static Scanner sc = new Scanner(System.in);

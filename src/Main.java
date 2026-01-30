@@ -88,13 +88,13 @@ public class Main {
     public static void TraderController(int choice){
         switch(choice){
             case 1:
-                //desplayPortfolio(();
+                displayPortfolio();
                 break;
             case 2:
-                //buyanAsset();
+                buyAsset();
                 break;
             case 3:
-                //sellanAsset();
+                sellAsset();
                 break;
             case 0:
                 System.out.println("Exit the program");
@@ -265,6 +265,72 @@ public class Main {
         System.out.println("Enter new price");
         double price = sc.nextDouble();
         Market.changethepriceofStock(name,price);
+    }
+    public static void displayPortfolio(){
+        System.out.println("=============================");
+        System.out.println(" Trader Portfolio ");
+        System.out.println("=============================");
+        if(Market.traders.isEmpty()){
+            System.out.println("there are no traders");
+            return;
+        }
+        Trader trader = Market.traders.get(0);
+        if(trader.portfolio == null){
+            trader.portfolio = new Portfolio(trader);
+        }
+        trader.portfolio.displayPortfolio();
+    }
+    public static void buyAsset(){
+        System.out.println("Enter asset type (1=Stock, 2=Crypto):");
+    int type = sc.nextInt();
+    System.out.println("Enter asset name:");
+    String name = sc.next();
+    System.out.println("Enter quantity:");
+    int quantity = sc.nextInt();
+    Trader trader = Market.traders.get(0);
+   if(trader.portfolio == null){
+       trader.portfolio = new Portfolio(trader);
+   } if(type == 1){
+       Stock stock = Market.findStock(name);
+       if(stock != null){
+           trader.portfolio.addStock(new Stock(stock.getName(), stock.getId(), stock.getPrice(), stock.getAssetType(), quantity));
+           Transaction t = new Transaction(trader, stock, quantity, "BUY");
+           System.out.println("Transaction completed: " + t);
+       }
+       else {
+           System.out.println("Stock not found");
+       }
+   }
+   else if(type == 2){
+       CryptoCurrency crypto = Market.findCrypto(name);
+       if(crypto != null){ trader.portfolio.addCrypto(new CryptoCurrency(crypto.getName(), crypto.getId(), crypto.getPrice(), crypto.getAssetType(), quantity));
+           Transaction t = new Transaction(trader, crypto, quantity, "BUY");
+           System.out.println("Transaction completed: " + t);
+       } else { System.out.println("Crypto not found");
+       }
+   }
+}
+    public static void sellAsset(){
+        System.out.println("Enter asset type (1=Stock, 2=Crypto):");
+        int type = sc.nextInt();
+        System.out.println("Enter asset name:");
+        String name = sc.next();
+        System.out.println("Enter quantity:");
+        int quantity = sc.nextInt();
+        Trader trader = Market.traders.get(0);
+
+        if(trader.portfolio == null){
+            trader.portfolio = new Portfolio(trader);
+        }
+        if(type == 1){
+            trader.portfolio.removeStock(name);
+            Transaction t = new Transaction(trader, new Stock(name,"",0,"Stock",quantity), quantity, "SELL");
+            System.out.println("Transaction completed: " + t);
+        }
+        else if(type == 2){ trader.portfolio.removeCrypto(name);
+            Transaction t = new Transaction(trader, new CryptoCurrency(name,"",0,"Crypto",quantity), quantity, "SELL");
+            System.out.println("Transaction completed: " + t);
+        }
     }
 
     public static void main(String[] args) {
