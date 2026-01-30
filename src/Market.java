@@ -55,8 +55,13 @@ public class Market
         }
         return null;
     }
-    public static void findCrypto(String name){
-
+    public static CryptoCurrency findCrypto(String name){
+     for(CryptoCurrency crypto:cryptos){
+         if(crypto.getName().equals(name)){
+             return crypto;
+         }
+     }
+     return null;
     }
     public static void addStock(Stock stock ,String name){
         Stock existingStock = findStock(name);
@@ -74,7 +79,10 @@ public class Market
            System.out.println("Stock added successfully");
         }
     }
-    public static void desplaystok() {
+    public static void displayStock() {
+        if(stocks.isEmpty()){
+            System.out.println("Nothing to Display");
+        }
         int counter = 1 ;
         for(Stock s : stocks){
             System.out.println("stock "+ counter++);
@@ -90,12 +98,67 @@ public class Market
             stocks.remove(stock);
             System.out.println("Stock removed successfully");
         }
+        else{
+            System.out.println("Stock not found");
+        }
     }
     public static void removeCrypto(String name) {
-
+        CryptoCurrency crypto = findCrypto(name);
+        if(crypto != null){
+            cryptos.remove(crypto);
+            System.out.println("Crypto removed successfully");
+        }
+        else{
+            System.out.println("Crypto not found");
+        }
     }
     public static void addCrypto(CryptoCurrency crypto, String name) {
+        CryptoCurrency existingCrypto = findCrypto(name);
+
+        if(existingCrypto != null){
+            System.out.println("crypto already exists, add the quantity only");
+            int quantity = crypto.getquantity();
+            int newquantity = existingCrypto.getquantity() + quantity;
+            crypto.setQuantity(newquantity);
+            cryptos.add(crypto);
+            System.out.println("crypto added successfully");
+        }
+        else{
+            cryptos.add(crypto);
+            System.out.println("crypto added successfully");
+        }
     }
     public static void desplayCryptoCrruncy() {
+        if(cryptos.isEmpty()){
+            System.out.println("Nothing to Display");
+        }
+        int counter = 1 ;
+        for(CryptoCurrency c : cryptos){
+            System.out.println(" Crypto "+ counter++);
+            System.out.println(" Crypto name : "+ c.getname());
+            System.out.println(" Crypto id : " + c.getid());
+            System.out.println(" Crypto price : "+ c.getprice());
+            System.out.println(" Crypto type : " + c.getAssettype());
+        }
+    }
+    public static void changethepiceofCrypto(String name,double newPrice) {
+        CryptoCurrency crypto = findCrypto(name);
+        if(crypto != null){
+            crypto.setPrice(newPrice);
+            System.out.println("the price changed successfully");
+        }
+        else{
+            System.out.println("the crypto not found");
+        }
+    }
+    public static void changethepriceofStock(String name,double newPrice) {
+        Stock stock = findStock(name);
+        if(stock != null){
+            stock.setPrice(newPrice);
+            System.out.println("the price changed successfully");
+        }
+        else{
+            System.out.println("the stock not found");
+        }
     }
 }

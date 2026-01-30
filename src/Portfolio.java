@@ -6,6 +6,9 @@ public class Portfolio {
     private static List<CryptoCurrency> cryptoCurrencies = new ArrayList<>();
     public Trader trader;
 
+    Portfolio(Trader trader){
+        this.trader = trader;
+    }
     public static void addStock(Stock stock){
         stocks.add(stock);
     }

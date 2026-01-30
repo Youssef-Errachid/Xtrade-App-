@@ -19,8 +19,8 @@ public class Main {
             case 2:
                 menuofTrader();
                 break;
-                default:
-                    System.out.println("Invalid choice");
+            default:
+                System.out.println("Invalid choice");
         }
     }
     public static void menuofAdmin(){
@@ -42,7 +42,7 @@ public class Main {
     public static void AdminController(int choice){
         switch(choice){
             case 1:
-                 addTrader();
+                addTrader();
                 break;
             case 2:
                 displayTraders();
@@ -51,13 +51,13 @@ public class Main {
                 desplaystockofMarket();
                 break;
             case 4:
-               desplaycryptoofMarket();
+                desplaycryptoofMarket();
                 break;
             case 5:
                 changethepriceofAsset();
                 break;
             case 6:
-               addAsset();
+                addAsset();
                 break;
             case 7:
                 removeTreader();
@@ -69,8 +69,8 @@ public class Main {
                 System.out.println("Exit the program");
                 System.exit(0);
                 break;
-                default:
-                    System.out.println("Invalid choice");
+            default:
+                System.out.println("Invalid choice");
         }
     }
     public static void menuofTrader(){
@@ -100,8 +100,8 @@ public class Main {
                 System.out.println("Exit the program");
                 System.exit(0);
                 break;
-                default:
-                    System.out.println("Invalid choice");
+            default:
+                System.out.println("Invalid choice");
         }
     }
     public static int getchoice(String message){
@@ -119,7 +119,7 @@ public class Main {
         int id = sc.nextInt();
         System.out.println("Enter initial balance");
         double balance = sc.nextDouble();
-       Trader trader = new Trader(name,id,balance);
+        Trader trader = new Trader(name,id,balance);
         Market.addTrader(trader);
     }
     private static void removeTreader() {
@@ -221,7 +221,7 @@ public class Main {
         System.out.println("=============================");
         System.out.println("         Market Stock ");
         System.out.println("=============================");
-        Market.desplaystok();
+        Market.displayStock();
     }
     public static void desplaycryptoofMarket(){
         System.out.println("=============================");
@@ -247,9 +247,26 @@ public class Main {
         }
     }
     private static void changethepiceofCrypto() {
+        System.out.println("============================");
+        System.out.println(" Change the price of Crypto");
+        System.out.println("============================");
+        System.out.println("Enter the name of the Crypto");
+        String name = sc.next();
+        System.out.println("Enter new price");
+        double price = sc.nextDouble();
+        Market.changethepiceofCrypto(name,price);
     }
     private static void changethepriceofStock() {
+        System.out.println("============================");
+        System.out.println(" Change the price of Stock");
+        System.out.println("============================");
+        System.out.println("Enter the name of the stock");
+        String name = sc.next();
+        System.out.println("Enter new price");
+        double price = sc.nextDouble();
+        Market.changethepriceofStock(name,price);
     }
+
     public static void main(String[] args) {
 
         //market stock
@@ -275,10 +292,6 @@ public class Main {
         Market.cryptos.add(new CryptoCurrency("Walmart", "WMT", 155.40, "Crypto",100));
         Market.cryptos.add(new CryptoCurrency("McDonald", "MCD", 280.75, "Crypto",100));
         Market.cryptos.add(new CryptoCurrency("Coca", "KO", 60.10, "Crypto",100));
-
-
-
-
 
 
         char tryagain = 'y';
