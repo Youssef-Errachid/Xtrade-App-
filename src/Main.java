@@ -236,7 +236,7 @@ public class Main {
         sc.nextLine();
         int q = sc.nextInt();
         Stock stock = new Stock(name,id,p,"stock",q);
-        Market.addStock(stock,name);
+        Market.addStock(stock);
     }
     public static void addCrypto(){
         System.out.println("=============================");
@@ -253,7 +253,7 @@ public class Main {
         sc.nextLine();
         int q = sc.nextInt();
         CryptoCurrency Crypto = new CryptoCurrency(name,id,p,"Crypto",q);
-        Market.addCrypto(Crypto,name);
+        Market.addCrypto(Crypto);
     }
     public static void desplaystockofMarket(){
         System.out.println("=============================");
