@@ -95,25 +95,20 @@ public class Market
             System.out.println("stock type : " + s.getAssettype());
         }
     }
-    public static void removeStock(String name) {
-        Stock stock = findStock(name);
-        if(stock != null){
-            stocks.remove(stock);
-            System.out.println("Stock removed successfully");
-        }
-        else{
-            System.out.println("Stock not found");
+      public static <T extends Asset> void removeAsset(String name, List<T> assetList, String assetType) {
+        T asset = findAsset(name, assetList);
+        if (asset != null) {
+            assetList.remove(asset);
+            System.out.println(assetType + " removed successfully: " + name);
+        } else {
+            System.out.println(assetType + " not found: " + name);
         }
     }
+    public static void removeStock(String name) {
+      removeAsset(name, stocks, "Stock");
+    }
     public static void removeCrypto(String name) {
-        CryptoCurrency crypto = findCrypto(name);
-        if(crypto != null){
-            cryptos.remove(crypto);
-            System.out.println("Crypto removed successfully");
-        }
-        else{
-            System.out.println("Crypto not found");
-        }
+      removeAsset(name, cryptos, "Cryptocurrency");
     }
      
     public static void desplayCryptoCrruncy() {
