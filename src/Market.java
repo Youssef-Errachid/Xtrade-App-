@@ -81,19 +81,27 @@ public class Market
      public static void addCrypto(CryptoCurrency crypto) {
      ddAsset(crypto, cryptos, "Cryptocurrency");
     }
-     
+       public static <T extends Asset> void displayAssets(List<T> assetList, String assetType) {
+        if (assetList.isEmpty()) {
+            System.out.println("No " + assetType + "s available");
+            return;
+        }
+
+        int counter = 1;
+        for (T asset : assetList) {
+            System.out.println("\n" + assetType + " " + counter++);
+            System.out.println("  Name: " + asset.getName());
+            System.out.println("  ID: " + asset.getId());
+            System.out.println("  Price: $" + asset.getPrice());
+            System.out.println("  Type: " + asset.getAssetType());
+            System.out.println("  Available Quantity: " + asset.getQuantity());
+        }
+    }
     public static void displayStock() {
-        if(stocks.isEmpty()){
-            System.out.println("Nothing to Display");
-        }
-        int counter = 1 ;
-        for(Stock s : stocks){
-            System.out.println("stock "+ counter++);
-            System.out.println("stock name : "+ s.getname());
-            System.out.println("stock id : " + s.getid());
-            System.out.println("stock price : "+ s.getprice());
-            System.out.println("stock type : " + s.getAssettype());
-        }
+       displayAssets(stocks, "Stock");
+    }
+     public static void desplayCryptoCrruncy() {
+        displayAssets(cryptos, "Cryptocurrency");
     }
       public static <T extends Asset> void removeAsset(String name, List<T> assetList, String assetType) {
         T asset = findAsset(name, assetList);
@@ -111,19 +119,6 @@ public class Market
       removeAsset(name, cryptos, "Cryptocurrency");
     }
      
-    public static void desplayCryptoCrruncy() {
-        if(cryptos.isEmpty()){
-            System.out.println("Nothing to Display");
-        }
-        int counter = 1 ;
-        for(CryptoCurrency c : cryptos){
-            System.out.println(" Crypto "+ counter++);
-            System.out.println(" Crypto name : "+ c.getname());
-            System.out.println(" Crypto id : " + c.getid());
-            System.out.println(" Crypto price : "+ c.getprice());
-            System.out.println(" Crypto type : " + c.getAssettype());
-        }
-    }
     public static void changethepiceofCrypto(String name,double newPrice) {
         CryptoCurrency crypto = findCrypto(name);
         if(crypto != null){
