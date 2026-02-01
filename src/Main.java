@@ -2,6 +2,44 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
+       public static void main(String[] args) {
+        initializeMarket();
+        char tryagain = 'y';
+        do{
+            menuPrincipal();
+            int choice = getchoice("Enter your choice 1 or 2 ");
+            controller(choice);
+            System.out.println("do you want to continue? y/n");
+            tryagain = sc.next().charAt(0);
+
+        }while(tryagain == 'y' || tryagain == 'Y');
+
+    }
+    public static void initializeMarket(){
+        //market stock
+        Market.stocks.add(new Stock("Apple", "AAPL", 175.50, "Stock" ,100));
+        Market.stocks.add(new Stock("Microsoft", "MSFT", 310.20, "Stock",100));
+        Market.stocks.add(new Stock("Amazon", "AMZN", 145.75, "Stock",100));
+        Market.stocks.add(new Stock("Alphabet", "GOOGL", 2800.75, "Stock",100));
+        Market.stocks.add(new Stock("Meta", "META", 350.40, "Stock",100));
+        Market.stocks.add(new Stock("Tesla", "TSLA", 720.10, "Stock",100));
+        Market.stocks.add(new Stock("NVIDIA", "NVDA", 650.25, "Stock",100));
+        Market.stocks.add(new Stock("Walmart", "WMT", 155.40, "Stock",100));
+        Market.stocks.add(new Stock("McDonald", "MCD", 280.75, "Stock",100));
+        Market.stocks.add(new Stock("Coca", "KO", 60.10, "Stock",100));
+
+        // market crypto
+        Market.cryptos.add(new CryptoCurrency("Apple", "AAPL", 175.50, "Crypto" ,100));
+        Market.cryptos.add(new CryptoCurrency("Microsoft", "MSFT", 310.20, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Amazon", "AMZN", 145.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Alphabet", "GOOGL", 2800.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Meta", "META", 350.40, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Tesla", "TSLA", 720.10, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("NVIDIA", "NVDA", 650.25, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Walmart", "WMT", 155.40, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("McDonald", "MCD", 280.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Coca", "KO", 60.10, "Crypto",100));
+    }
 
     public static void menuPrincipal(){
         System.out.println("=============================");
@@ -333,42 +371,5 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
-
-        //market stock
-        Market.stocks.add(new Stock("Apple", "AAPL", 175.50, "Stock" ,100));
-        Market.stocks.add(new Stock("Microsoft", "MSFT", 310.20, "Stock",100));
-        Market.stocks.add(new Stock("Amazon", "AMZN", 145.75, "Stock",100));
-        Market.stocks.add(new Stock("Alphabet", "GOOGL", 2800.75, "Stock",100));
-        Market.stocks.add(new Stock("Meta", "META", 350.40, "Stock",100));
-        Market.stocks.add(new Stock("Tesla", "TSLA", 720.10, "Stock",100));
-        Market.stocks.add(new Stock("NVIDIA", "NVDA", 650.25, "Stock",100));
-        Market.stocks.add(new Stock("Walmart", "WMT", 155.40, "Stock",100));
-        Market.stocks.add(new Stock("McDonald", "MCD", 280.75, "Stock",100));
-        Market.stocks.add(new Stock("Coca", "KO", 60.10, "Stock",100));
-
-        // market crypto
-        Market.cryptos.add(new CryptoCurrency("Apple", "AAPL", 175.50, "Crypto" ,100));
-        Market.cryptos.add(new CryptoCurrency("Microsoft", "MSFT", 310.20, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Amazon", "AMZN", 145.75, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Alphabet", "GOOGL", 2800.75, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Meta", "META", 350.40, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Tesla", "TSLA", 720.10, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("NVIDIA", "NVDA", 650.25, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Walmart", "WMT", 155.40, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("McDonald", "MCD", 280.75, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Coca", "KO", 60.10, "Crypto",100));
-
-
-        char tryagain = 'y';
-        do{
-            menuPrincipal();
-            int choice = getchoice("Enter your choice 1 or 2 ");
-            controller(choice);
-            System.out.println("do you want to continue? y/n");
-            tryagain = sc.next().charAt(0);
-
-        }while(tryagain == 'y' || tryagain == 'Y');
-
-    }
+ 
 }
