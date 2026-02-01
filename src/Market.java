@@ -47,38 +47,41 @@ public class Market
     }
     return null;
     }
-    public static Stock findStock(String name){
-        for (Stock stock:stocks) {
-            if(stock.getname().equals(name)){
-                return stock;
+      public static <T extends Asset> T findAsset(String name, List<T> assetList) {
+        for (T asset : assetList) {
+            if (asset.getName().equalsIgnoreCase(name)) {
+                return asset;
             }
         }
         return null;
     }
-    public static CryptoCurrency findCrypto(String name){
-     for(CryptoCurrency crypto:cryptos){
-         if(crypto.getName().equals(name)){
-             return crypto;
-         }
+     public static <T extends Asset> void addAsset(T asset, List<T> assetList,String assetType){
+     T existting = findAsset(asset.getName(), assetList);
+           if (existing != null) {
+            System.out.println(assetType + " already exists. Updating quantity...");
+            int newQuantity = existing.getQuantity() + asset.getQuantity();
+            existing.setQuantity(newQuantity);
+            System.out.println(assetType + " quantity updated to " + newQuantity);
+        } else {
+            assetList.add(asset);
+            System.out.println(assetType + " added successfully: " + asset.getName());
+        }     
      }
-     return null;
+     
+    public static Stock findStock(String name){
+     return findAsset(name,stocks);
     }
-    public static void addStock(Stock stock ,String name){
-        Stock existingStock = findStock(name);
-
-        if(existingStock != null){
-            System.out.println("Stock already exists, add the quantity only");
-            int quantity = stock.getquantity();
-            int newquantity = existingStock.getquantity() + quantity;
-            stock.setQuantity(newquantity);
-            stocks.add(stock);
-            System.out.println("Stock added successfully");
-        }
-        else{
-           stocks.add(stock);
-           System.out.println("Stock added successfully");
-        }
+    public static CryptoCurrency findCrypto(String name){
+     return findAsset(name,cryptos);
     }
+     
+    public static void addStock(Stock stock){
+     addAsset(stock, stocks, "Stock");
+    }
+     public static void addCrypto(CryptoCurrency crypto) {
+     ddAsset(crypto, cryptos, "Cryptocurrency");
+    }
+     
     public static void displayStock() {
         if(stocks.isEmpty()){
             System.out.println("Nothing to Display");
@@ -112,22 +115,7 @@ public class Market
             System.out.println("Crypto not found");
         }
     }
-    public static void addCrypto(CryptoCurrency crypto, String name) {
-        CryptoCurrency existingCrypto = findCrypto(name);
-
-        if(existingCrypto != null){
-            System.out.println("crypto already exists, add the quantity only");
-            int quantity = crypto.getquantity();
-            int newquantity = existingCrypto.getquantity() + quantity;
-            crypto.setQuantity(newquantity);
-            cryptos.add(crypto);
-            System.out.println("crypto added successfully");
-        }
-        else{
-            cryptos.add(crypto);
-            System.out.println("crypto added successfully");
-        }
-    }
+     
     public static void desplayCryptoCrruncy() {
         if(cryptos.isEmpty()){
             System.out.println("Nothing to Display");
