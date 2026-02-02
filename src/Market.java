@@ -72,16 +72,16 @@ public class Market
         return findAsset(name,stocks);
     }
     public static CryptoCurrency findCrypto(String name){
-        return findAsset(name,cryptos);
+     return findAsset(name,cryptos);
     }
 
     public static void addStock(Stock stock){
-        addAsset(stock, stocks, "Stock");
+     addAsset(stock, stocks, "Stock");
     }
-    public static void addCrypto(CryptoCurrency crypto) {
-        addAsset(crypto, cryptos, "Cryptocurrency");
+     public static void addCrypto(CryptoCurrency crypto) {
+     addAsset(crypto, cryptos, "Cryptocurrency");
     }
-    public static <T extends Asset> void displayAssets(List<T> assetList, String assetType) {
+       public static <T extends Asset> void displayAssets(List<T> assetList, String assetType) {
         if (assetList.isEmpty()) {
             System.out.println("No " + assetType + "s available");
             return;
@@ -98,12 +98,12 @@ public class Market
         }
     }
     public static void displayStock() {
-        displayAssets(stocks, "Stock");
+       displayAssets(stocks, "Stock");
     }
-    public static void desplayCryptoCrruncy() {
+     public static void desplayCryptoCrruncy() {
         displayAssets(cryptos, "Cryptocurrency");
     }
-    public static <T extends Asset> void removeAsset(String name, List<T> assetList, String assetType) {
+      public static <T extends Asset> void removeAsset(String name, List<T> assetList, String assetType) {
         T asset = findAsset(name, assetList);
         if (asset != null) {
             assetList.remove(asset);
@@ -113,10 +113,10 @@ public class Market
         }
     }
     public static void removeStock(String name) {
-        removeAsset(name, stocks, "Stock");
+      removeAsset(name, stocks, "Stock");
     }
     public static void removeCrypto(String name) {
-        removeAsset(name, cryptos, "Cryptocurrency");
+      removeAsset(name, cryptos, "Cryptocurrency");
     }
 
     public static void changethepiceofCrypto(String name,double newPrice) {

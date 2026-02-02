@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) {
+       public static void main(String[] args) {
         initializeMarket();
         char tryagain = 'y';
         do{
@@ -371,5 +371,7 @@ public class Main {
         }
     }
 
+
+}
 
 }
