@@ -2,6 +2,44 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {
+        initializeMarket();
+        char tryagain = 'y';
+        do{
+            menuPrincipal();
+            int choice = getchoice("Enter your choice 1 or 2 ");
+            controller(choice);
+            System.out.println("do you want to continue? y/n");
+            tryagain = sc.next().charAt(0);
+
+        }while(tryagain == 'y' || tryagain == 'Y');
+
+    }
+    public static void initializeMarket(){
+        //market stock
+        Market.stocks.add(new Stock("Apple", "AAPL", 175.50, "Stock" ,100));
+        Market.stocks.add(new Stock("Microsoft", "MSFT", 310.20, "Stock",100));
+        Market.stocks.add(new Stock("Amazon", "AMZN", 145.75, "Stock",100));
+        Market.stocks.add(new Stock("Alphabet", "GOOGL", 2800.75, "Stock",100));
+        Market.stocks.add(new Stock("Meta", "META", 350.40, "Stock",100));
+        Market.stocks.add(new Stock("Tesla", "TSLA", 720.10, "Stock",100));
+        Market.stocks.add(new Stock("NVIDIA", "NVDA", 650.25, "Stock",100));
+        Market.stocks.add(new Stock("Walmart", "WMT", 155.40, "Stock",100));
+        Market.stocks.add(new Stock("McDonald", "MCD", 280.75, "Stock",100));
+        Market.stocks.add(new Stock("Coca", "KO", 60.10, "Stock",100));
+
+        // market crypto
+        Market.cryptos.add(new CryptoCurrency("Apple", "AAPL", 175.50, "Crypto" ,100));
+        Market.cryptos.add(new CryptoCurrency("Microsoft", "MSFT", 310.20, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Amazon", "AMZN", 145.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Alphabet", "GOOGL", 2800.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Meta", "META", 350.40, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Tesla", "TSLA", 720.10, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("NVIDIA", "NVDA", 650.25, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Walmart", "WMT", 155.40, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("McDonald", "MCD", 280.75, "Crypto",100));
+        Market.cryptos.add(new CryptoCurrency("Coca", "KO", 60.10, "Crypto",100));
+    }
 
     public static void menuPrincipal(){
         System.out.println("=============================");
@@ -198,7 +236,7 @@ public class Main {
         sc.nextLine();
         int q = sc.nextInt();
         Stock stock = new Stock(name,id,p,"stock",q);
-        Market.addStock(stock,name);
+        Market.addStock(stock);
     }
     public static void addCrypto(){
         System.out.println("=============================");
@@ -215,7 +253,7 @@ public class Main {
         sc.nextLine();
         int q = sc.nextInt();
         CryptoCurrency Crypto = new CryptoCurrency(name,id,p,"Crypto",q);
-        Market.addCrypto(Crypto,name);
+        Market.addCrypto(Crypto);
     }
     public static void desplaystockofMarket(){
         System.out.println("=============================");
@@ -282,34 +320,34 @@ public class Main {
     }
     public static void buyAsset(){
         System.out.println("Enter asset type (1=Stock, 2=Crypto):");
-    int type = sc.nextInt();
-    System.out.println("Enter asset name:");
-    String name = sc.next();
-    System.out.println("Enter quantity:");
-    int quantity = sc.nextInt();
-    Trader trader = Market.traders.get(0);
-   if(trader.portfolio == null){
-       trader.portfolio = new Portfolio(trader);
-   } if(type == 1){
-       Stock stock = Market.findStock(name);
-       if(stock != null){
-           trader.portfolio.addStock(new Stock(stock.getName(), stock.getId(), stock.getPrice(), stock.getAssetType(), quantity));
-           Transaction t = new Transaction(trader, stock, quantity, "BUY");
-           System.out.println("Transaction completed: " + t);
-       }
-       else {
-           System.out.println("Stock not found");
-       }
-   }
-   else if(type == 2){
-       CryptoCurrency crypto = Market.findCrypto(name);
-       if(crypto != null){ trader.portfolio.addCrypto(new CryptoCurrency(crypto.getName(), crypto.getId(), crypto.getPrice(), crypto.getAssetType(), quantity));
-           Transaction t = new Transaction(trader, crypto, quantity, "BUY");
-           System.out.println("Transaction completed: " + t);
-       } else { System.out.println("Crypto not found");
-       }
-   }
-}
+        int type = sc.nextInt();
+        System.out.println("Enter asset name:");
+        String name = sc.next();
+        System.out.println("Enter quantity:");
+        int quantity = sc.nextInt();
+        Trader trader = Market.traders.get(0);
+        if(trader.portfolio == null){
+            trader.portfolio = new Portfolio(trader);
+        } if(type == 1){
+            Stock stock = Market.findStock(name);
+            if(stock != null){
+                trader.portfolio.addStock(new Stock(stock.getName(), stock.getId(), stock.getPrice(), stock.getAssetType(), quantity));
+                Transaction t = new Transaction(trader, stock, quantity, "BUY");
+                System.out.println("Transaction completed: " + t);
+            }
+            else {
+                System.out.println("Stock not found");
+            }
+        }
+        else if(type == 2){
+            CryptoCurrency crypto = Market.findCrypto(name);
+            if(crypto != null){ trader.portfolio.addCrypto(new CryptoCurrency(crypto.getName(), crypto.getId(), crypto.getPrice(), crypto.getAssetType(), quantity));
+                Transaction t = new Transaction(trader, crypto, quantity, "BUY");
+                System.out.println("Transaction completed: " + t);
+            } else { System.out.println("Crypto not found");
+            }
+        }
+    }
     public static void sellAsset(){
         System.out.println("Enter asset type (1=Stock, 2=Crypto):");
         int type = sc.nextInt();
@@ -333,42 +371,5 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
 
-        //market stock
-        Market.stocks.add(new Stock("Apple", "AAPL", 175.50, "Stock" ,100));
-        Market.stocks.add(new Stock("Microsoft", "MSFT", 310.20, "Stock",100));
-        Market.stocks.add(new Stock("Amazon", "AMZN", 145.75, "Stock",100));
-        Market.stocks.add(new Stock("Alphabet", "GOOGL", 2800.75, "Stock",100));
-        Market.stocks.add(new Stock("Meta", "META", 350.40, "Stock",100));
-        Market.stocks.add(new Stock("Tesla", "TSLA", 720.10, "Stock",100));
-        Market.stocks.add(new Stock("NVIDIA", "NVDA", 650.25, "Stock",100));
-        Market.stocks.add(new Stock("Walmart", "WMT", 155.40, "Stock",100));
-        Market.stocks.add(new Stock("McDonald", "MCD", 280.75, "Stock",100));
-        Market.stocks.add(new Stock("Coca", "KO", 60.10, "Stock",100));
-
-        // market crypto
-        Market.cryptos.add(new CryptoCurrency("Apple", "AAPL", 175.50, "Crypto" ,100));
-        Market.cryptos.add(new CryptoCurrency("Microsoft", "MSFT", 310.20, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Amazon", "AMZN", 145.75, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Alphabet", "GOOGL", 2800.75, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Meta", "META", 350.40, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Tesla", "TSLA", 720.10, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("NVIDIA", "NVDA", 650.25, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Walmart", "WMT", 155.40, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("McDonald", "MCD", 280.75, "Crypto",100));
-        Market.cryptos.add(new CryptoCurrency("Coca", "KO", 60.10, "Crypto",100));
-
-
-        char tryagain = 'y';
-        do{
-            menuPrincipal();
-            int choice = getchoice("Enter your choice 1 or 2 ");
-            controller(choice);
-            System.out.println("do you want to continue? y/n");
-            tryagain = sc.next().charAt(0);
-
-        }while(tryagain == 'y' || tryagain == 'Y');
-
-    }
 }
