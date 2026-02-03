@@ -2,8 +2,10 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
-       public static void main(String[] args) {
-        initializeMarket();
+    public static void main(String[] args) {
+           initializeMarket();
+           desplaystockofMarket();
+           desplaycryptoofMarket();
         char tryagain = 'y';
         do{
             menuPrincipal();
@@ -40,7 +42,6 @@ public class Main {
         Market.cryptos.add(new CryptoCurrency("McDonald", "MCD", 280.75, "Crypto",100));
         Market.cryptos.add(new CryptoCurrency("Coca", "KO", 60.10, "Crypto",100));
     }
-
     public static void menuPrincipal(){
         System.out.println("=============================");
         System.out.println("   Welcome to Xtrade app ");
@@ -73,6 +74,8 @@ public class Main {
         System.out.println("6. Add Asset");
         System.out.println("7. Remove Trader");
         System.out.println("8. Remove Asset");
+        System.out.println("9. Display All Transactions");
+        System.out.println("10. Transaction History/ Trader ");
         System.out.println("0. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
@@ -103,6 +106,12 @@ public class Main {
             case 8:
                 removeAsset();
                 break;
+            case 9:
+                dispalyallTransaction();
+                break;
+            case 10:
+                transactionHistorique();
+                break;
             case 0:
                 System.out.println("Exit the program");
                 System.exit(0);
@@ -111,6 +120,7 @@ public class Main {
                 System.out.println("Invalid choice");
         }
     }
+
     public static void menuofTrader(){
         System.out.println("============================");
         System.out.println("          Trader");
@@ -306,47 +316,60 @@ public class Main {
     }
     public static void displayPortfolio(){
         System.out.println("=============================");
-        System.out.println(" Trader Portfolio ");
+        System.out.println("     Trader Portfolio ");
         System.out.println("=============================");
         if(Market.traders.isEmpty()){
             System.out.println("there are no traders");
             return;
         }
-        Trader trader = Market.traders.get(0);
+        System.out.println("Enter the ID of the trader");
+        int index = sc.nextInt();
+        Trader trader = Market.traders.get(index -1);
         if(trader.portfolio == null){
             trader.portfolio = new Portfolio(trader);
         }
         trader.portfolio.displayPortfolio();
+
     }
     public static void buyAsset(){
-        System.out.println("Enter asset type (1=Stock, 2=Crypto):");
-        int type = sc.nextInt();
+        System.out.println("=============================");
+        System.out.println("     Buy Asset ");
+        System.out.println("=============================");
+        System.out.println("1. Buy Stock ");
+        System.out.println("2. Buy Crypto ");
+        int choice =  getchoice("Enter your choice between 1 and 2");
+        if(choice == 1) {
+            buyStock();
+        }else if(choice == 2){
+            buyCrypto();
+        }
+        else{
+            System.out.println("Invalid choice");
+        }
+    }
+    public static void buyStock(){
+        System.out.println("=============================");
+        System.out.println("     Buy Stock ");
+        System.out.println("=============================");
         System.out.println("Enter asset name:");
         String name = sc.next();
         System.out.println("Enter quantity:");
         int quantity = sc.nextInt();
-        Trader trader = Market.traders.get(0);
-        if(trader.portfolio == null){
-            trader.portfolio = new Portfolio(trader);
-        } if(type == 1){
-            Stock stock = Market.findStock(name);
-            if(stock != null){
-                trader.portfolio.addStock(new Stock(stock.getName(), stock.getId(), stock.getPrice(), stock.getAssetType(), quantity));
-                Transaction t = new Transaction(trader, stock, quantity, "BUY");
-                System.out.println("Transaction completed: " + t);
-            }
-            else {
-                System.out.println("Stock not found");
-            }
-        }
-        else if(type == 2){
-            CryptoCurrency crypto = Market.findCrypto(name);
-            if(crypto != null){ trader.portfolio.addCrypto(new CryptoCurrency(crypto.getName(), crypto.getId(), crypto.getPrice(), crypto.getAssetType(), quantity));
-                Transaction t = new Transaction(trader, crypto, quantity, "BUY");
-                System.out.println("Transaction completed: " + t);
-            } else { System.out.println("Crypto not found");
-            }
-        }
+        System.out.println("Enter the ID of the trader");
+        int id = sc.nextInt();
+        Market.buyStock(name, quantity,id);
+    }
+    public static void buyCrypto(){
+        System.out.println("=============================");
+        System.out.println("     Buy Crypto ");
+        System.out.println("=============================");
+        System.out.println("Enter asset name:");
+        String name = sc.next();
+        System.out.println("Enter quantity:");
+        int quantity = sc.nextInt();
+        System.out.println("Enter the ID of the trader");
+        int id = sc.nextInt();
+        Market.buyCrypto(name, quantity,id);
     }
     public static void sellAsset(){
         System.out.println("Enter asset type (1=Stock, 2=Crypto):");
@@ -355,8 +378,9 @@ public class Main {
         String name = sc.next();
         System.out.println("Enter quantity:");
         int quantity = sc.nextInt();
-        Trader trader = Market.traders.get(0);
-
+        System.out.println("Enter the ID of the trader");
+        int id = sc.nextInt();
+        Trader trader = Market.traders.get(id - 1);
         if(trader.portfolio == null){
             trader.portfolio = new Portfolio(trader);
         }
@@ -370,8 +394,29 @@ public class Main {
             System.out.println("Transaction completed: " + t);
         }
     }
-
-
-}
-
+    public static void transactionHistorique(){
+        System.out.println("=============================");
+        System.out.println("      Transaction Historique ");
+        System.out.println("=============================");
+        if(Market.traders.isEmpty()){
+            System.out.println("there are no traders");
+            return;
+        }
+        System.out.println("Enter the ID of the trader");
+        int index = sc.nextInt();
+        Trader trader = Market.traders.get(index -1);
+        if(trader.portfolio == null){
+            trader.portfolio = new Portfolio(trader);
+        }
+        trader.portfolio.transactionHistorique();
+    }
+    public static void dispalyallTransaction(){
+        System.out.println("=============================");
+        System.out.println("         TRANSACTION ");
+        System.out.println("=============================");
+        if(Market.transactions.isEmpty()){
+            System.out.println("there are no transactions");
+        }
+        Market.dispalyallTransaction();
+    }
 }
