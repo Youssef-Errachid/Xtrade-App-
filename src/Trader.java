@@ -1,5 +1,7 @@
 public class Trader extends Person {
     private double balance;
+    Portfolio portfolio;
+
  public  Trader(String name, int id, double balance){
   super(name,id);
      this.balance = 0;

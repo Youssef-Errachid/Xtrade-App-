@@ -5,7 +5,7 @@ public class Transaction {
     private Asset asset;
     private int quantity;
     private double totalPrice;
-    private String type; // "BUY" or "SELL"
+    private String type;
     private LocalDateTime dateTime;
 
     public Transaction(Trader trader, Asset asset, int quantity, String type){
@@ -15,6 +15,54 @@ public class Transaction {
         this.type = type;
         this.totalPrice = asset.getPrice() * quantity;
         this.dateTime = LocalDateTime.now();
+    }
+
+    public Trader getTrader() {
+        return trader;
+    }
+
+    public void setTrader(Trader trader) {
+        this.trader = trader;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     @Override
