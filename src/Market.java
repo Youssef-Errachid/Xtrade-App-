@@ -137,7 +137,6 @@ public class Market
             System.out.println("the stock not found");
         }
     }
-
     public static void buyCrypto(String name, int quantity, int id) {
         Trader trader = traders.get(id -1);
         if(trader.portfolio == null){
@@ -154,7 +153,6 @@ public class Market
             System.out.println("Crypto not found");
         }
     }
-
     public static void buyStock(String name, int quantity, int id) {
         Trader trader = Market.traders.get(id -1);
         if(trader.portfolio == null){
@@ -172,7 +170,6 @@ public class Market
             System.out.println("Stock not found");
         }
     }
-
     public static void dispalyallTransaction() {
         for(Transaction transaction : transactions){
             System.out.println("Trader : " +transaction.getTrader().getName());
@@ -182,5 +179,17 @@ public class Market
             System.out.println("Total Price : " +transaction.getTotalPrice());
             System.out.println( "Date " + transaction.getDateTime());
         }
+    }
+
+    public static void filterbyAssetname(String name) {
+        List<Transaction> tR = transactions.stream()
+                .filter(n -> n.equals(name)).toList();
+
+    }
+    public static void filterbyTransactiontype(String type) {
+
+    }
+
+    public static void filterbyDaterange(String date) {
     }
 }

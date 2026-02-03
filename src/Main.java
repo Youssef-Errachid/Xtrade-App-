@@ -76,6 +76,7 @@ public class Main {
         System.out.println("8. Remove Asset");
         System.out.println("9. Display All Transactions");
         System.out.println("10. Transaction History/ Trader ");
+        System.out.println("11. Filter Transactions");
         System.out.println("0. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
@@ -112,6 +113,9 @@ public class Main {
             case 10:
                 transactionHistorique();
                 break;
+            case 11:
+                filterTransactio();
+                break;
             case 0:
                 System.out.println("Exit the program");
                 System.exit(0);
@@ -119,6 +123,61 @@ public class Main {
             default:
                 System.out.println("Invalid choice");
         }
+    }
+    private static void filterTransactio() {
+        System.out.println("============================");
+        System.out.println("          Filter Transaction");
+        System.out.println("============================");
+        System.out.println("1. filter by Transaction type");
+        System.out.println("2. filter by Asset Name ");
+        System.out.println("3. filter by Date range");
+        System.out.println("Enter your choice between 1 and 3");
+        int choice = getchoice("Enter your choice between 1 and 3");
+        filterController(choice);
+    }
+    private static void filterController(int choice) {
+        switch(choice){
+            case 1:
+                filterbyTransactiontype();
+                break;
+            case 2:
+                filterbyAssetname();
+                break;
+            case 3 :
+                filterbyDaterange();
+                break;
+                case 0:
+                    System.out.println("Exit the program");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice");
+        }
+    }
+    private static void filterbyDaterange(){
+        System.out.println("============================");
+        System.out.println("   Filter by Date range");
+        System.out.println("============================");
+        System.out.println("Enter the Date range");
+        String date = sc.nextLine();
+        Market.filterbyDaterange(date);
+    }
+
+    private static void filterbyAssetname() {
+        System.out.println("============================");
+        System.out.println("   Filter by Asset Name");
+        System.out.println("============================");
+        System.out.println("Enter the name of the Asset");
+        String name = sc.nextLine();
+        Market.filterbyAssetname(name);
+    }
+
+    private static void filterbyTransactiontype() {
+        System.out.println("============================");
+        System.out.println("Filter by Transaction Type");
+        System.out.println("============================");
+        System.out.println("Enter the Transaction Type");
+        String type = sc.nextLine();
+        Market.filterbyTransactiontype(type);
     }
 
     public static void menuofTrader(){
