@@ -1,7 +1,9 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Market
 {
@@ -194,9 +196,21 @@ public class Market
         filtered.forEach(System.out::println);
     }
     public static void filterbyDaterange(LocalDate date1, LocalDate date2) {
-        List<Transaction> filtered = transactions.stream()
+        List<Transaction> tr = transactions.stream()
                 .filter(t -> date1.isBefore(t.getDateTime()) && t.getDateTime().isBefore(date2))
                 .toList();
-        filtered.forEach(System.out::println);
+        tr.forEach(System.out::println);
+    }
+    public static void sortTransactionByDate() {
+        List<Transaction>  tr = transactions.stream()
+                .sorted(Comparator.comparing(Transaction::getDateTime).reversed())
+                .collect(Collectors.toList());
+        tr.forEach(System.out::println);
+    }
+    public static void sortTransactionByAmount() {
+        List<Transaction>  tr = transactions.stream()
+                .sorted(Comparator.comparing(Transaction::getTotalPrice).reversed())
+                .collect(Collectors.toList());
+        tr.forEach(System.out::println);
     }
 }

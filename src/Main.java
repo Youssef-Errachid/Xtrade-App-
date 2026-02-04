@@ -1,14 +1,11 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
            initializeMarket();
-           desplaystockofMarket();
-           desplaycryptoofMarket();
         char tryagain = 'y';
         do{
             menuPrincipal();
@@ -59,7 +56,7 @@ public class Main {
                 menuofAdmin();
                 break;
             case 2:
-                menuofTrader();
+                menuOfTrader();
                 break;
             default:
                 System.out.println("Invalid choice");
@@ -80,6 +77,7 @@ public class Main {
         System.out.println("9. Display All Transactions");
         System.out.println("10. Transaction History/ Trader ");
         System.out.println("11. Filter Transactions");
+        System.out.println("12. Sort transactions by: date, amount");
         System.out.println("0. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
@@ -119,6 +117,9 @@ public class Main {
             case 11:
                 filterTransaction();
                 break;
+            case 12:
+                sortTransactions();
+                break;
             case 0:
                 System.out.println("Exit the program");
                 System.exit(0);
@@ -126,6 +127,24 @@ public class Main {
             default:
                 System.out.println("Invalid choice");
         }
+    }
+    private static void sortTransactions() {
+        System.out.println("============================");
+        System.out.println("     Sort Transaction ");
+        System.out.println("============================");
+        System.out.println("1. Sort Transaction by date");
+        System.out.println("2. Sort Transaction by amount");
+        int choice = getchoice("Enter your choice between 1 and 2");
+        if(choice == 1 ){
+            Market.sortTransactionByDate();
+        }
+        else if(choice == 2){
+            Market.sortTransactionByAmount();
+        }
+        else {
+            System.out.println("Invalid choice!");
+        }
+
     }
     private static void filterTransaction() {
         System.out.println("============================");
@@ -140,13 +159,13 @@ public class Main {
     private static void filterController(int choice) {
         switch(choice){
             case 1:
-                filterbyTransactiontype();
+                filterByTransactionType();
                 break;
             case 2:
-                filterbyAssetname();
+                filterByAssetName();
                 break;
             case 3 :
-                filterbyDaterange();
+                filterbydaterange();
                 break;
                 case 0:
                     System.out.println("Exit the program");
@@ -155,7 +174,7 @@ public class Main {
                     System.out.println("Invalid choice");
         }
     }
-    private static void filterbyDaterange(){
+    private static void filterbydaterange(){
         System.out.println("============================");
         System.out.println("   Filter by Date range");
         System.out.println("============================");
@@ -174,7 +193,7 @@ public class Main {
 
         Market.filterbyDaterange(date1,date2);
     }
-    private static void filterbyAssetname() {
+    private static void filterByAssetName() {
         System.out.println("============================");
         System.out.println("   Filter by Asset Name");
         System.out.println("============================");
@@ -183,7 +202,7 @@ public class Main {
         String name = sc.nextLine();
         Market.filterByAssetName(name);
     }
-    private static void filterbyTransactiontype() {
+    private static void filterByTransactionType() {
         System.out.println("============================");
         System.out.println("Filter by Transaction Type");
         System.out.println("============================");
@@ -191,7 +210,7 @@ public class Main {
         String type = sc.nextLine();
         Market.filterbyTransactiontype(type);
     }
-    public static void menuofTrader(){
+    public static void menuOfTrader(){
         System.out.println("============================");
         System.out.println("          Trader");
         System.out.println("============================");

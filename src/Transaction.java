@@ -27,7 +27,7 @@ public class Transaction {
         this.trader = trader;
     }
 
-    public Asset getAsset() {
+    public  Asset getAsset() {
         return asset;
     }
 
@@ -42,27 +42,21 @@ public class Transaction {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
     public double getTotalPrice() {
         return totalPrice;
     }
-
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
-
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
-
     public LocalDate getDateTime() {
         return dateTime;
     }
-
     public void setDateTime(LocalDate dateTime) {
         this.dateTime = dateTime;
     }
