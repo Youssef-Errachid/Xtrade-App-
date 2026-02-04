@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Main {
@@ -67,9 +70,9 @@ public class Main {
         System.out.println("      Administrator");
         System.out.println("============================");
         System.out.println("1. Add Trader");
-        System.out.println("2. Desplay all Traders");
-        System.out.println("3. Desplay Market Stock");
-        System.out.println("4. Desplay Market Crypto Currency");
+        System.out.println("2. Display all Traders");
+        System.out.println("3. Display Market Stock");
+        System.out.println("4. Display Market Crypto Currency");
         System.out.println("5. Change the price of Asset");
         System.out.println("6. Add Asset");
         System.out.println("7. Remove Trader");
@@ -114,7 +117,7 @@ public class Main {
                 transactionHistorique();
                 break;
             case 11:
-                filterTransactio();
+                filterTransaction();
                 break;
             case 0:
                 System.out.println("Exit the program");
@@ -124,14 +127,13 @@ public class Main {
                 System.out.println("Invalid choice");
         }
     }
-    private static void filterTransactio() {
+    private static void filterTransaction() {
         System.out.println("============================");
         System.out.println("          Filter Transaction");
         System.out.println("============================");
         System.out.println("1. filter by Transaction type");
         System.out.println("2. filter by Asset Name ");
         System.out.println("3. filter by Date range");
-        System.out.println("Enter your choice between 1 and 3");
         int choice = getchoice("Enter your choice between 1 and 3");
         filterController(choice);
     }
@@ -157,20 +159,30 @@ public class Main {
         System.out.println("============================");
         System.out.println("   Filter by Date range");
         System.out.println("============================");
-        System.out.println("Enter the Date range");
-        String date = sc.nextLine();
-        Market.filterbyDaterange(date);
-    }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date1 = null;
+            System.out.print("Enter the first date (YYYY-MM-dd): ");
+            sc.nextLine();
+            String d1 = sc.nextLine();
+            date1 = LocalDate.parse(d1, formatter);
 
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date2 = null;
+            System.out.print("Enter the second date (YYYY-MM-dd): ");
+            String d2 = sc.nextLine();
+            date2 = LocalDate.parse(d2, formatter2);
+
+        Market.filterbyDaterange(date1,date2);
+    }
     private static void filterbyAssetname() {
         System.out.println("============================");
         System.out.println("   Filter by Asset Name");
         System.out.println("============================");
         System.out.println("Enter the name of the Asset");
+        sc.nextLine();
         String name = sc.nextLine();
-        Market.filterbyAssetname(name);
+        Market.filterByAssetName(name);
     }
-
     private static void filterbyTransactiontype() {
         System.out.println("============================");
         System.out.println("Filter by Transaction Type");
@@ -179,7 +191,6 @@ public class Main {
         String type = sc.nextLine();
         Market.filterbyTransactiontype(type);
     }
-
     public static void menuofTrader(){
         System.out.println("============================");
         System.out.println("          Trader");

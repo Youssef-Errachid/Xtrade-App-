@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -180,16 +181,22 @@ public class Market
             System.out.println( "Date " + transaction.getDateTime());
         }
     }
-
-    public static void filterbyAssetname(String name) {
-        List<Transaction> tR = transactions.stream()
-                .filter(n -> n.equals(name)).toList();
-
+    public static void filterByAssetName(String name) {
+        List<Transaction> filtered = transactions.stream()
+                .filter(t -> t.getAsset().getName().equalsIgnoreCase(name))
+                .toList();
+        filtered.forEach(System.out::println);
     }
     public static void filterbyTransactiontype(String type) {
-
+        List<Transaction> filtered = transactions.stream()
+                .filter(t -> t.getType().equalsIgnoreCase(type))
+                .toList();
+        filtered.forEach(System.out::println);
     }
-
-    public static void filterbyDaterange(String date) {
+    public static void filterbyDaterange(LocalDate date1, LocalDate date2) {
+        List<Transaction> filtered = transactions.stream()
+                .filter(t -> date1.isBefore(t.getDateTime()) && t.getDateTime().isBefore(date2))
+                .toList();
+        filtered.forEach(System.out::println);
     }
 }

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Transaction {
@@ -6,7 +7,7 @@ public class Transaction {
     private int quantity;
     private double totalPrice;
     private String type;
-    private LocalDateTime dateTime;
+    private LocalDate dateTime;
 
     public Transaction(Trader trader, Asset asset, int quantity, String type){
         this.trader = trader;
@@ -14,8 +15,9 @@ public class Transaction {
         this.quantity = quantity;
         this.type = type;
         this.totalPrice = asset.getPrice() * quantity;
-        this.dateTime = LocalDateTime.now();
+        this.dateTime = LocalDate.now();
     }
+
 
     public Trader getTrader() {
         return trader;
@@ -57,11 +59,11 @@ public class Transaction {
         this.type = type;
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDate getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(LocalDate dateTime) {
         this.dateTime = dateTime;
     }
 
