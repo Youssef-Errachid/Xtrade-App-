@@ -15,7 +15,6 @@ public class Main {
             tryagain = sc.next().charAt(0);
 
         }while(tryagain == 'y' || tryagain == 'Y');
-
     }
     public static void initializeMarket(){
         //market stock
@@ -78,6 +77,8 @@ public class Main {
         System.out.println("10. Transaction History/ Trader ");
         System.out.println("11. Filter Transactions");
         System.out.println("12. Sort transactions by: date, amount");
+        System.out.println("13. Calculate the total volume traded per asset");
+        System.out.println("14. Calculate the total amount  of purchases and sales");
         System.out.println("0. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
@@ -120,12 +121,63 @@ public class Main {
             case 12:
                 sortTransactions();
                 break;
+            case 13:
+                calculateTotalVolumeTradedPerAsset();
+                break;
+            case 14:
+                calculateTotalAmountOfPurchasesAndSales();
             case 0:
                 System.out.println("Exit the program");
                 System.exit(0);
                 break;
             default:
                 System.out.println("Invalid choice");
+        }
+    }
+    private static void calculateTotalVolumeTradedPerAsset() {
+        System.out.println("============================");
+        System.out.println("   Total Volume Traded    ");
+        System.out.println("============================");
+        System.out.println("1. total volume of stock");
+        System.out.println("2. total volume of crypto");
+        int choice = getchoice("Enter your choice between 1 and 2");
+        if(choice == 1){
+           totalVolumeOfStock();
+        }
+        else if(choice == 2){
+            totalVolumeOfCrypto();
+        }
+    }
+    private static void totalVolumeOfCrypto() {
+        System.out.println("============================");
+        System.out.println("   Total Volume of Crypto    ");
+        System.out.println("============================");
+        System.out.println("Enter the mane of the Crypto to calculate the total volume");
+        sc.nextLine();
+        String cryptoName = sc.nextLine();
+        System.out.println(Market.totalVolumeOfCrypto(cryptoName));
+    }
+    private static void totalVolumeOfStock() {
+        System.out.println("============================");
+        System.out.println("   Total Volume of Stock    ");
+        System.out.println("============================");
+        System.out.println("Enter the mane of the Stock to calculate the total volume");
+        sc.nextLine();
+        String stockName = sc.nextLine();
+        System.out.println(Market.totalVolumeOfStock(stockName));
+    }
+    private static void calculateTotalAmountOfPurchasesAndSales() {
+        System.out.println("============================");
+        System.out.println("   Total Amount Traded    ");
+        System.out.println("============================");
+        System.out.println("1. total amount of purchases");
+        System.out.println("2. total amount of sales");
+        int choice = getchoice("Enter your choice between 1 and 2");
+        if(choice == 1){
+            Market.totalAmountOfPurchases();
+        }
+        else if(choice == 2){
+            Market.totalAmountOfSales();
         }
     }
     private static void sortTransactions() {

@@ -213,4 +213,27 @@ public class Market
                 .collect(Collectors.toList());
         tr.forEach(System.out::println);
     }
+    public static double totalAmountOfPurchases() {
+        return transactions.stream()
+                .filter(t -> t.getType().equalsIgnoreCase("buy"))
+                .mapToDouble(Transaction::getTotalPrice)
+                .sum();
+    }
+    public static double totalAmountOfSales() {
+        return transactions.stream()
+                .filter(t -> t.getType().equalsIgnoreCase("sell"))
+                .mapToDouble(Transaction::getTotalPrice)
+                .sum();
+    }
+    public static long totalVolumeOfCrypto(String name) {
+        return transactions.stream()
+                .filter(t -> t.getAsset().getName().equalsIgnoreCase(name))
+                .count();
+    }
+    public static int totalVolumeOfStock(String name) {
+        return (int) transactions.stream()
+                .filter(t -> t.getAsset().getName().equalsIgnoreCase(name))
+                .collect(Collectors.toList())
+                .size();
+    }
 }
