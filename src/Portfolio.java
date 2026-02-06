@@ -13,26 +13,25 @@ public class Portfolio {
         this.cryptoCurrencies = new ArrayList<>();
         this.transactions = new ArrayList<>();
     }
-
     public void addStock(Stock stock){
+
         stocks.add(stock);
     }
-
     public void addCrypto(CryptoCurrency crypto){
+
         cryptoCurrencies.add(crypto);
     }
-
     public void removeStock(String name){
+
         stocks.removeIf(s -> s.getName().equals(name));
     }
+    public void removeCrypto(String name) {
 
-    public void removeCrypto(String name){
         cryptoCurrencies.removeIf(c -> c.getName().equals(name));
     }
     public void  addTransaction(Transaction transaction){
         transactions.add(transaction);
     }
-
     public void displayPortfolio(){
         System.out.println("Portfolio of Trader: " + trader.getName());
         if(stocks.isEmpty() && cryptoCurrencies.isEmpty()){
@@ -46,7 +45,6 @@ public class Portfolio {
             System.out.println("Crypto: " + c.getName() + " | Quantity: " + c.getQuantity() + " | Price: " + c.getPrice());
         }
     }
-
     public void transactionHistorique() {
 
         for(Transaction transaction : transactions){
@@ -64,5 +62,9 @@ public class Portfolio {
                 .mapToDouble(Transaction::getTotalPrice)
                 .sum();
     }
-
+    public long CalculatingTheTotalNumberfoOrdersPlaced(Trader trader) {
+        return transactions.stream()
+                .filter(t -> t.getTrader().equals(trader))
+                .count();
+    }
 }

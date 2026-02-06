@@ -80,6 +80,7 @@ public class Main {
         System.out.println("13. Calculate the total volume traded per asset");
         System.out.println("14. Calculate the total amount  of purchases and sales");
         System.out.println("15. Calculation of the total volume traded per trader");
+        System.out.println("16. Calculating the total number of orders placed");
         System.out.println("0. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
@@ -130,6 +131,10 @@ public class Main {
                 break;
             case 15:
                 CalculationTheTotalVolumeTradedPerTrader();
+                break;
+            case 16:
+                CalculatingTheTotalNumberfoOrdersPlaced();
+                break;
                 case 0:
                 System.out.println("Exit the program");
                 System.exit(0);
@@ -139,11 +144,29 @@ public class Main {
         }
     }
 
+    private static void CalculatingTheTotalNumberfoOrdersPlaced() {
+        System.out.println("============================");
+        System.out.println("   Total Orders placed  ");
+        System.out.println("============================");
+        if(Market.traders.isEmpty()){
+            System.out.println("there are no trader");
+            return;
+        }
+        sc.nextLine();
+        System.out.println("Enter the ID of the trader");
+        int index = sc.nextInt();
+        Trader trader = Market.traders.get(index -1);
+        if(trader.portfolio == null){
+            trader.portfolio = new Portfolio(trader);
+        }
+        System.out.println("Calculating the total number of orders placed." +
+                trader.portfolio.CalculatingTheTotalNumberfoOrdersPlaced(trader));
+    }
+
     private static void CalculationTheTotalVolumeTradedPerTrader() {
         System.out.println("============================");
         System.out.println("   Total Volume Traded    ");
         System.out.println("============================");
-        System.out.println("Enter the ID of the trader");
         if(Market.traders.isEmpty()){
             System.out.println("there are no trader");
             return;
