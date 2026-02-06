@@ -29,7 +29,8 @@ public class Portfolio {
 
         cryptoCurrencies.removeIf(c -> c.getName().equals(name));
     }
-    public void  addTransaction(Transaction transaction){
+    public void  addTransaction(Transaction transaction) {
+
         transactions.add(transaction);
     }
     public void displayPortfolio(){
@@ -56,7 +57,7 @@ public class Portfolio {
             System.out.println( "Date " + transaction.getDateTime());
         }
     }
-    public double CalculationTheTotalVolumeTradedPerTrader(Trader trader) {
+    public  double CalculationTheTotalVolumeTradedPerTrader(Trader trader) {
         return transactions.stream()
                 .filter(t -> t.getTrader().equals(trader))
                 .mapToDouble(Transaction::getTotalPrice)

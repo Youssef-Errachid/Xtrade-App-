@@ -81,6 +81,7 @@ public class Main {
         System.out.println("14. Calculate the total amount  of purchases and sales");
         System.out.println("15. Calculation of the total volume traded per trader");
         System.out.println("16. Calculating the total number of orders placed");
+        System.out.println("17. Ranking of traders by volume (top N traders)");
         System.out.println("0. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
@@ -135,6 +136,9 @@ public class Main {
             case 16:
                 CalculatingTheTotalNumberfoOrdersPlaced();
                 break;
+            case 17 :
+                rankingOftradersByVolumeTopNTraders();
+                break;
                 case 0:
                 System.out.println("Exit the program");
                 System.exit(0);
@@ -144,6 +148,21 @@ public class Main {
         }
     }
 
+    private static void rankingOftradersByVolumeTopNTraders() {
+        System.out.println("============================");
+        System.out.println("Ranking of traders by volume ");
+        System.out.println("============================");
+
+        if(Market.traders.isEmpty()){
+            System.out.println("there are no trader");
+            return;
+        }
+
+        System.out.println("Enter the number of top traders you want");
+        int number = sc.nextInt();
+
+        Market.rankingOftradersByVolumeTopNTraders(number);
+    }
     private static void CalculatingTheTotalNumberfoOrdersPlaced() {
         System.out.println("============================");
         System.out.println("   Total Orders placed  ");
@@ -162,7 +181,6 @@ public class Main {
         System.out.println("Calculating the total number of orders placed." +
                 trader.portfolio.CalculatingTheTotalNumberfoOrdersPlaced(trader));
     }
-
     private static void CalculationTheTotalVolumeTradedPerTrader() {
         System.out.println("============================");
         System.out.println("   Total Volume Traded    ");
@@ -182,7 +200,6 @@ public class Main {
         trader.portfolio.CalculationTheTotalVolumeTradedPerTrader(trader));
 
     }
-
     private static void calculateTotalVolumeTradedPerAsset() {
         System.out.println("============================");
         System.out.println("   Total Volume Traded    ");
@@ -315,7 +332,7 @@ public class Main {
         System.out.println("============================");
         System.out.println("          Trader");
         System.out.println("============================");
-        System.out.println("1. Desplay Portfolio ");
+        System.out.println("1. Display Portfolio ");
         System.out.println("2. buy an asset");
         System.out.println("3. sell an asset");
         System.out.println("4. Exit");

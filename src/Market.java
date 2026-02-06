@@ -237,8 +237,29 @@ public class Market
                 .size();
     }
 
+    public static long getTraderVolume(Trader trader) {
+        return transactions.stream()
+                .filter(t -> t.getTrader().equals(trader))
+                .mapToLong(Transaction::getQuantity)
+                .sum();
+    }
 
+    public static void rankingOftradersByVolumeTopNTraders(int number) {
+        if (transactions.isEmpty()) {
+            System.out.println("No transactions available to rank traders.");
+            return;
+        }
 
+        traders.stream()
+                .sorted((t1, t2) -> Long.compare(
+                        getTraderVolume(t2), getTraderVolume(t1)))
+                .limit(number)
+                .forEach(trader -> {
+                    System.out.println("Trader: " + trader.getName() +
+                            " (ID: " + trader.getId() + ") - Volume: " +
+                            getTraderVolume(trader));
+                });
+    }
 
 
 }
