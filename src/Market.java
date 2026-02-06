@@ -236,4 +236,5 @@ public class Market
                 .collect(Collectors.toList())
                 .size();
     }
+
 }

@@ -58,4 +58,11 @@ public class Portfolio {
             System.out.println( "Date " + transaction.getDateTime());
         }
     }
+    public double CalculationTheTotalVolumeTradedPerTrader(Trader trader) {
+        return transactions.stream()
+                .filter(t -> t.getTrader().equals(trader))
+                .mapToDouble(Transaction::getTotalPrice)
+                .sum();
+    }
+
 }

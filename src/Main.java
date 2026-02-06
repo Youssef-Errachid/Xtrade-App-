@@ -79,6 +79,7 @@ public class Main {
         System.out.println("12. Sort transactions by: date, amount");
         System.out.println("13. Calculate the total volume traded per asset");
         System.out.println("14. Calculate the total amount  of purchases and sales");
+        System.out.println("15. Calculation of the total volume traded per trader");
         System.out.println("0. Exit");
         int choice = getchoice("Enter your choice between 1 and 7");
         AdminController(choice);
@@ -126,7 +127,10 @@ public class Main {
                 break;
             case 14:
                 calculateTotalAmountOfPurchasesAndSales();
-            case 0:
+                break;
+            case 15:
+                CalculationTheTotalVolumeTradedPerTrader();
+                case 0:
                 System.out.println("Exit the program");
                 System.exit(0);
                 break;
@@ -134,6 +138,28 @@ public class Main {
                 System.out.println("Invalid choice");
         }
     }
+
+    private static void CalculationTheTotalVolumeTradedPerTrader() {
+        System.out.println("============================");
+        System.out.println("   Total Volume Traded    ");
+        System.out.println("============================");
+        System.out.println("Enter the ID of the trader");
+        if(Market.traders.isEmpty()){
+            System.out.println("there are no trader");
+            return;
+        }
+        sc.nextLine();
+        System.out.println("Enter the ID of the trader");
+        int index = sc.nextInt();
+        Trader trader = Market.traders.get(index -1);
+        if(trader.portfolio == null){
+            trader.portfolio = new Portfolio(trader);
+        }
+        System.out.println("The total volume traded per trader." +
+        trader.portfolio.CalculationTheTotalVolumeTradedPerTrader(trader));
+
+    }
+
     private static void calculateTotalVolumeTradedPerAsset() {
         System.out.println("============================");
         System.out.println("   Total Volume Traded    ");
